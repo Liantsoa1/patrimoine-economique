@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Table from "react-bootstrap/Table";
 import axios from "axios";
 import formatDate from "./formatDate";
-import actualValue from "./actualValue";
+import calculateValue from "./calculateWithAmortissement";
 
 function ShowTable() {
   const [patrimoine, setPatrimoine] = useState([]);
@@ -39,7 +39,7 @@ function ShowTable() {
           <th>valeur initiale</th>
           <th>date de debut</th>
           <th>date de fin</th>
-          <th>amortissemnt</th>
+          <th>amortissement</th>
           <th>valeur actuelle</th>
         </tr>
       </thead>
@@ -52,7 +52,7 @@ function ShowTable() {
             <td>{formatDate(possession?.dateDebut)}</td>
             <td>{possession?.dateFin}</td>
             <td>{possession?.tauxAmortissement}</td>
-            <td>{actualValue(possession?.valeur, possession?.dateDebut, possession?.tauxAmortissement)}</td>
+            <td>{calculateValue(possession?.valeur, possession?.dateDebut, possession?.tauxAmortissement, possession?.valeurConstante, null)}</td>
           </tr>
         ))}
       </tbody>
